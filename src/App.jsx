@@ -31,7 +31,7 @@ function App() {
 		},
 	]);
 
-	const [time, setTime] = useState(25 * 60);
+	const [time, setTime] = useState(30 * 60);
 	const [isRunning, setIsRunning] = useState(false);
 
 	useEffect(() => {
@@ -71,7 +71,7 @@ function App() {
 						className='btn btn-danger'
 						onClick={() => {
 							setIsRunning(false);
-							setTime(25 * 60);
+							setTime(30 * 60);
 						}}>
 						Reset
 					</button>
