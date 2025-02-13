@@ -115,7 +115,7 @@ function App() {
 							</div>
 						))}
 					</div>
-					<div className='col p-4'>Column 2</div>
+					{/* <div className='col p-4'>Column 2</div> */}
 				</div>
 			</div>
 		</>
