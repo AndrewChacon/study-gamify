@@ -14,7 +14,7 @@ function App() {
 		},
 		{
 			item_name: 'Coins',
-			item_price: 40,
+			item_price: 30,
 			item_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
 			cost_name: 'Min Episode',
 			cost_price: 20,
@@ -22,7 +22,7 @@ function App() {
 		},
 		{
 			item_name: 'Coins',
-			item_price: 60,
+			item_price: 75,
 			item_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
 			cost_name: 'Hour Gaming',
 			cost_price: 1,
