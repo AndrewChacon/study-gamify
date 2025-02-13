@@ -1,83 +1,121 @@
 // import { useState } from 'react';
 // import reactLogo from './assets/react.svg'
-import coinImage from './assets/coins-money-svgrepo-com.svg';
-import gameImage from './assets/joystick-game-controller-svgrepo-com.svg';
-import equalsImage from './assets/equal-sign-svgrepo-com.svg';
+import React, { useState, useEffect } from 'react';
 
 function App() {
-	// const [count, setCount] = useState(0);
+	const [items, setItems] = useState([
+		{
+			item_name: 'Pomodoro Timer',
+			item_price: 1,
+			item_img: 'https://www.svgrepo.com/show/236616/timer-stopwatch.svg',
+			cost_name: 'Coins',
+			cost_price: 20,
+			cost_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
+		},
+		{
+			item_name: 'Coins',
+			item_price: 40,
+			item_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
+			cost_name: 'Min Episode',
+			cost_price: 20,
+			cost_img: 'https://www.svgrepo.com/show/477110/tv.svg',
+		},
+		{
+			item_name: 'Coins',
+			item_price: 60,
+			item_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
+			cost_name: 'Hour Gaming',
+			cost_price: 1,
+			cost_img:
+				'https://www.svgrepo.com/show/288490/joystick-game-controller.svg',
+		},
+	]);
+
+	const [time, setTime] = useState(25 * 60);
+	const [isRunning, setIsRunning] = useState(false);
+
+	useEffect(() => {
+		let timer;
+		if (isRunning) {
+			timer = setInterval(() => {
+				setTime(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
+			}, 1000);
+		} else {
+			clearInterval(timer);
+		}
+		return () => clearInterval(timer);
+	}, [isRunning]);
+
+	const formatTime = seconds => {
+		const minutes = Math.floor(seconds / 60);
+		const secs = seconds % 60;
+		return `${minutes.toString().padStart(2, '0')}:${secs
+			.toString()
+			.padStart(2, '0')}`;
+	};
 
 	return (
 		<>
-			{/* <div>
-				<a href='https://vite.dev' target='_blank'>
-					<img src={viteLogo} className='logo' alt='Vite logo' />
-				</a>
-				<a href='https://react.dev' target='_blank'>
-					<img
-						src={reactLogo}
-						className='logo react'
-						alt='React logo'
-					/>
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className='card'>
-				<button onClick={() => setCount(count => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.jsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className='read-the-docs'>
-				Click on the Vite and React logos to learn more
-			</p> */}
+			<h1 className='text-center'>Drew's Study Shop</h1>
 
-			<div class='container text-center mt-4'>
-				{/* <div className='row'>
-					<div className='col'>
-						<img
-							src={coinImage}
-							className='balance-icon'
-							alt='balance icon'
-						/>
-					</div>
-					<div className='col balance-amount'>50</div>
-				</div> */}
+			<div className='container pomodoro text-center'>
+				<h1>Pomodoro Timer</h1>
+				<div className='timer'>{formatTime(time)}</div>
+				<div className='controls'>
+					<button
+						className='btn btn-primary'
+						onClick={() => setIsRunning(!isRunning)}>
+						{isRunning ? 'Pause' : 'Start'}
+					</button>
+					<button
+						className='btn btn-danger'
+						onClick={() => {
+							setIsRunning(false);
+							setTime(25 * 60);
+						}}>
+						Reset
+					</button>
+				</div>
+			</div>
 
-				<div class='row g-4'>
-					<div class='col-md-6 p-4'>
-						<div className='row'>
-							<div className='col'>
-								{' '}
-								<img
-									src={coinImage}
-									className='balance-icon icon'
-									alt='balance icon'
-								/>
-								<p>40 coins</p>
+			<div className='container text-center mt-4'>
+				<div className='row'>
+					<div className='col p-4'>
+						{items.map(item => (
+							<div className='row'>
+								<div className='col'>
+									<img
+										className='icon'
+										src={item.item_img}
+										alt=''
+									/>
+									<p>
+										{item.item_price + ' ' + item.item_name}
+									</p>
+								</div>
+								<div className='col'>
+									<img
+										className='icon'
+										src={
+											'https://www.svgrepo.com/show/535367/equals.svg'
+										}
+										alt=''
+									/>
+								</div>
+								<div className='col'>
+									<img
+										className='icon'
+										src={item.cost_img}
+										alt=''
+									/>
+									<p>
+										{item.cost_price + ' ' + item.cost_name}
+									</p>
+								</div>
 							</div>
-							<div className='col'>
-								{' '}
-								<img
-									src={equalsImage}
-									className='equals-icon icon '
-									alt='equals icon'
-								/>
-							</div>
-							<div className='col'>
-								{' '}
-								<img
-									src={gameImage}
-									className='game-icon icon'
-									alt='game icon'
-								/>
-								<p>30 minutes game</p>
-							</div>
-						</div>
+						))}
 					</div>
-					<div class='col-md-6 p-4'>Column 2</div>
+					<div className='col p-4'>Column 2</div>
 				</div>
 			</div>
 		</>

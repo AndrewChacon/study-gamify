@@ -1,14 +1,8 @@
-body {
-}
-
-.col-md-6 {
+.col,
+.pomodoro {
 	border-radius: 20px !important;
 	border: 2px solid #212529;
 }
-
-/* .balance-icon {
-	width: 30px;
-} */
 
 .balance-amount {
 	color: rgb(6, 228, 6);
@@ -16,4 +10,16 @@ body {
 
 .icon {
 	width: 50px;
+}
+
+.timer {
+	font-size: 48px;
+	margin: 20px 0;
+}
+
+.controls button {
+	margin: 5px;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
 }
