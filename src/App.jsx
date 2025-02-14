@@ -154,6 +154,8 @@ function App() {
 								<p>
 									{item.cost_price} {item.cost_name}
 								</p>
+							</div>
+							<div className='col'>
 								<button
 									className='btn btn-success'
 									onClick={() => {
