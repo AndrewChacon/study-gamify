@@ -6,16 +6,7 @@ function App() {
 	const alarm = new Audio(alarmSound);
 	const coin = new Audio(coinSound);
 	const effectRun = useRef(false);
-	// items state and data
 	const [items, setItems] = useState([
-		// {
-		// 	item_name: 'Pomodoro Timer',
-		// 	item_price: 1,
-		// 	item_img: 'https://www.svgrepo.com/show/236616/timer-stopwatch.svg',
-		// 	cost_name: 'Coins',
-		// 	cost_price: 20,
-		// 	cost_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
-		// },
 		{
 			item_name: 'Coins',
 			item_price: 30,
@@ -43,7 +34,6 @@ function App() {
 				'https://www.svgrepo.com/show/288490/joystick-game-controller.svg',
 		},
 	]);
-	// timer state
 	const [time, setTime] = useState(1 * 60);
 	const [isRunning, setIsRunning] = useState(false);
 
@@ -82,7 +72,6 @@ function App() {
 			.padStart(2, '0')}`;
 	};
 
-	// shop state
 	const [coins, setCoins] = useState(100); // Starting coins
 	const [completedSessions, setCompletedSessions] = useState(0);
 
