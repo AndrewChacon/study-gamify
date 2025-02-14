@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 
 function App() {
+	// items state and data
 	const [items, setItems] = useState([
 		{
 			item_name: 'Pomodoro Timer',
@@ -30,15 +31,24 @@ function App() {
 				'https://www.svgrepo.com/show/288490/joystick-game-controller.svg',
 		},
 	]);
-
-	const [time, setTime] = useState(30 * 60);
+	// timer state
+	const [time, setTime] = useState(1 * 60);
 	const [isRunning, setIsRunning] = useState(false);
 
 	useEffect(() => {
 		let timer;
 		if (isRunning) {
 			timer = setInterval(() => {
-				setTime(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
+				setTime(prevTime => {
+					if (prevTime <= 1) {
+						setIsRunning(false);
+						setTime(1 * 60);
+						setCoins(prevCoins => prevCoins + 20); // Reward 20 coins for each completed Pomodoro
+						setCompletedSessions(prev => prev + 1);
+						return 0;
+					}
+					return prevTime - 1;
+				});
 			}, 1000);
 		} else {
 			clearInterval(timer);
@@ -54,9 +64,25 @@ function App() {
 			.padStart(2, '0')}`;
 	};
 
+	// shop state
+	const [coins, setCoins] = useState(0); // Starting coins
+	const [completedSessions, setCompletedSessions] = useState(0);
+
+	const handlePurchase = cost => {
+		if (coins >= cost) {
+			setCoins(prevCoins => prevCoins - cost);
+		} else {
+			alert('Not enough coins!');
+		}
+	};
+
 	return (
 		<>
 			<h1 className='text-center'>Drew's Study Shop</h1>
+			<div className='text-center'>
+				<h3>Coin Balance: {coins} 🪙</h3>
+				<p>Completed Pomodoro Sessions: {completedSessions} ✅</p>
+			</div>
 
 			<div className='container pomodoro text-center'>
 				<h1>Pomodoro Timer</h1>
@@ -71,51 +97,56 @@ function App() {
 						className='btn btn-danger'
 						onClick={() => {
 							setIsRunning(false);
-							setTime(30 * 60);
+							setTime(1 * 60);
 						}}>
 						Reset
 					</button>
 				</div>
 			</div>
 
-			<div className='container text-center mt-4'>
-				<div className='row'>
-					<div className='col p-4'>
-						{items.map(item => (
-							<div className='row'>
-								<div className='col'>
-									<img
-										className='icon'
-										src={item.item_img}
-										alt=''
-									/>
-									<p>
-										{item.item_price + ' ' + item.item_name}
-									</p>
-								</div>
-								<div className='col'>
-									<img
-										className='icon'
-										src={
-											'https://www.svgrepo.com/show/535367/equals.svg'
-										}
-										alt=''
-									/>
-								</div>
-								<div className='col'>
-									<img
-										className='icon'
-										src={item.cost_img}
-										alt=''
-									/>
-									<p>
-										{item.cost_price + ' ' + item.cost_name}
-									</p>
-								</div>
+			<div className='container text-center'>
+				<div className='col p-4'>
+					{items.map((item, index) => (
+						<div key={index} className='row mb-3'>
+							<div className='col'>
+								<img
+									className='icon'
+									src={item.item_img}
+									alt=''
+								/>
+								<p>{item.item_name}</p>
 							</div>
-						))}
-					</div>
-					{/* <div className='col p-4'>Column 2</div> */}
+							<div className='col'>
+								<img
+									className='icon'
+									src={
+										'https://www.svgrepo.com/show/535367/equals.svg'
+									}
+									alt=''
+								/>
+							</div>
+							<div className='col'>
+								<img
+									className='icon'
+									src={item.cost_img}
+									alt=''
+								/>
+								<p>
+									{item.cost_price} {item.cost_name}
+								</p>
+								<button
+									className='btn btn-success'
+									onClick={() =>
+										handlePurchase(item.cost_price)
+									}
+									disabled={coins < item.cost_price}>
+									{coins < item.cost_price
+										? 'Not Enough Coins'
+										: 'Buy'}
+								</button>
+							</div>
+						</div>
+					))}
 				</div>
 			</div>
 		</>
