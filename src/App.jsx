@@ -74,7 +74,7 @@ function App() {
 	};
 
 	// shop state
-	const [coins, setCoins] = useState(0); // Starting coins
+	const [coins, setCoins] = useState(100); // Starting coins
 	const [completedSessions, setCompletedSessions] = useState(0);
 
 	const handlePurchase = cost => {
