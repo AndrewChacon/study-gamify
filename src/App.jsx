@@ -8,14 +8,14 @@ function App() {
 	const effectRun = useRef(false);
 	// items state and data
 	const [items, setItems] = useState([
-		{
-			item_name: 'Pomodoro Timer',
-			item_price: 1,
-			item_img: 'https://www.svgrepo.com/show/236616/timer-stopwatch.svg',
-			cost_name: 'Coins',
-			cost_price: 20,
-			cost_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
-		},
+		// {
+		// 	item_name: 'Pomodoro Timer',
+		// 	item_price: 1,
+		// 	item_img: 'https://www.svgrepo.com/show/236616/timer-stopwatch.svg',
+		// 	cost_name: 'Coins',
+		// 	cost_price: 20,
+		// 	cost_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
+		// },
 		{
 			item_name: 'Coins',
 			item_price: 30,
@@ -23,6 +23,15 @@ function App() {
 			cost_name: 'Min Episode',
 			cost_price: 20,
 			cost_img: 'https://www.svgrepo.com/show/477110/tv.svg',
+		},
+		{
+			item_name: 'Coins',
+			item_price: 40,
+			item_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
+			cost_name: 'Min Gaming',
+			cost_price: 30,
+			cost_img:
+				'https://www.svgrepo.com/show/288490/joystick-game-controller.svg',
 		},
 		{
 			item_name: 'Coins',
@@ -87,10 +96,10 @@ function App() {
 
 	return (
 		<>
-			<h1 className='text-center'>Drew's Study Shop</h1>
 			<div className='text-center'>
 				<h3>Coin Balance: {coins} 🪙</h3>
 				<p>Completed Pomodoro Sessions: {completedSessions} ✅</p>
+				<p>1 Session = 20 Coins</p>
 			</div>
 
 			<div className='container pomodoro text-center'>
@@ -149,10 +158,10 @@ function App() {
 									className='btn btn-success'
 									onClick={() => {
 										coin.play();
-										handlePurchase(item.cost_price);
+										handlePurchase(item.item_price);
 									}}
-									disabled={coins < item.cost_price}>
-									{coins < item.cost_price
+									disabled={coins < item.item_price}>
+									{coins < item.item_price
 										? 'Not Enough Coins'
 										: 'Buy'}
 								</button>
