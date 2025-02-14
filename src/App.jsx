@@ -1,8 +1,11 @@
-// import { useState } from 'react';
-// import reactLogo from './assets/react.svg'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import alarmSound from './assets/alarm_sound.wav';
+import coinSound from './assets/coin_sound.wav';
 
 function App() {
+	const alarm = new Audio(alarmSound);
+	const coin = new Audio(coinSound);
+	const effectRun = useRef(false);
 	// items state and data
 	const [items, setItems] = useState([
 		{
@@ -36,6 +39,11 @@ function App() {
 	const [isRunning, setIsRunning] = useState(false);
 
 	useEffect(() => {
+		if (!effectRun.current) {
+			effectRun.current = true;
+			return;
+		}
+
 		let timer;
 		if (isRunning) {
 			timer = setInterval(() => {
@@ -43,8 +51,9 @@ function App() {
 					if (prevTime <= 1) {
 						setIsRunning(false);
 						setTime(1 * 60);
-						setCoins(prevCoins => prevCoins + 20); // Reward 20 coins for each completed Pomodoro
+						setCoins(prevCoins => prevCoins + 20);
 						setCompletedSessions(prev => prev + 1);
+						alarm.play();
 						return 0;
 					}
 					return prevTime - 1;
@@ -114,7 +123,9 @@ function App() {
 									src={item.item_img}
 									alt=''
 								/>
-								<p>{item.item_name}</p>
+								<p>
+									{item.item_price} {item.item_name}
+								</p>
 							</div>
 							<div className='col'>
 								<img
@@ -136,9 +147,10 @@ function App() {
 								</p>
 								<button
 									className='btn btn-success'
-									onClick={() =>
-										handlePurchase(item.cost_price)
-									}
+									onClick={() => {
+										coin.play();
+										handlePurchase(item.cost_price);
+									}}
 									disabled={coins < item.cost_price}>
 									{coins < item.cost_price
 										? 'Not Enough Coins'
