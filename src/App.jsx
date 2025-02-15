@@ -85,7 +85,8 @@ function App() {
 			.padStart(2, '0')}`;
 	};
 
-	const [coins, setCoins] = useState(getStoredData('coins') || 50);
+	// const [coins, setCoins] = useState(getStoredData('coins') || 50);
+	const [coins, setCoins] = useState(100);
 	const [completedSessions, setCompletedSessions] = useState(
 		getStoredData('completedSessions') || 0
 	);
@@ -104,24 +105,23 @@ function App() {
 	return (
 		<div className='app-container'>
 			<header>
-				<h3>Zen Tokens: {coins} 🥟</h3>
-				<p>Pomodoro Sessions: {completedSessions} ✅</p>
-				<p>1 Session = 20 Tokens</p>
+				<h1>🪙: {coins}</h1>
+				<h1>⏲️: {completedSessions} ✅</h1>
 			</header>
 
 			<section className='pomodoro-timer'>
-				<h1>Pomodoro Timer ⏲️</h1>
+				<h1>Pomodoro Timer</h1>
 				<div className='timer'>{formatTime(time)}</div>
 				<div className='controls'>
 					<button onClick={() => setIsRunning(!isRunning)}>
-						{isRunning ? 'Pause' : 'Start'}
+						{isRunning ? '⏸️' : '▶️'}
 					</button>
 					<button
 						onClick={() => {
 							setIsRunning(false);
 							setTime(30 * 60);
 						}}>
-						Reset
+						🔄
 					</button>
 				</div>
 			</section>
@@ -139,6 +139,7 @@ function App() {
 								{`${item.cost_img} ${item.cost_price} ${item.cost_name}`}
 							</p>
 							<button
+								className='btn-success'
 								onClick={() => handlePurchase(item.item_price)}
 								disabled={coins < item.item_price}>
 								{coins < item.item_price ? 'Trade' : 'Trade'}
