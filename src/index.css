@@ -115,6 +115,8 @@ button:disabled {
 @media (max-width: 480px) {
 	.shop {
 		width: 85%;
+
+		/**/
 		margin: 0 auto;
 	}
 
