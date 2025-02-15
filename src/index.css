@@ -8,12 +8,13 @@ body {
 
 header {
 	display: block;
-	width: 100px;
+	width: 70px;
 	text-align: left;
 	margin: 0 0 50px auto;
+	padding: none;
 }
 
-header h1 {
+header p {
 	padding: 0;
 	margin: 10px 0;
 }
@@ -64,31 +65,12 @@ button {
 	font-size: 20px;
 	cursor: pointer;
 	transition: 0.3s ease-in-out;
-	background-color: #e1e1e1;
+	background-color: #f4f4f4;
 }
 
 button:disabled {
 	opacity: 0.5;
 	cursor: not-allowed;
-}
-
-/* Button Colors */
-.btn-primary {
-	background-color: #3498db;
-	color: white;
-}
-
-.btn-primary:hover {
-	background-color: #2980b9;
-}
-
-.btn-danger {
-	background-color: #e74c3c;
-	color: white;
-}
-
-.btn-danger:hover {
-	background-color: #c0392b;
 }
 
 .btn-success {

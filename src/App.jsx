@@ -105,8 +105,8 @@ function App() {
 	return (
 		<div className='app-container'>
 			<header>
-				<h1>🪙: {coins}</h1>
-				<h1>⏲️: {completedSessions} ✅</h1>
+				<p>🪙: {coins}</p>
+				<p>⏲️: {completedSessions} ✅</p>
 			</header>
 
 			<section className='pomodoro-timer'>
