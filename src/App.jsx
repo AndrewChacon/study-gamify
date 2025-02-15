@@ -6,6 +6,7 @@ function App() {
 	const alarm = new Audio(alarmSound);
 	const coin = new Audio(coinSound);
 	const effectRun = useRef(false);
+	const getStoredData = key => JSON.parse(localStorage.getItem(key)) || 0;
 	const [items, setItems] = useState([
 		{
 			item_name: 'Coins',
@@ -50,8 +51,22 @@ function App() {
 					if (prevTime <= 1) {
 						setIsRunning(false);
 						setTime(1 * 60);
-						setCoins(prevCoins => prevCoins + 20);
-						setCompletedSessions(prev => prev + 1);
+						setCoins(prevCoins => {
+							const newCoins = prevCoins + 20;
+							localStorage.setItem(
+								'coins',
+								JSON.stringify(newCoins)
+							); // Save to local storage
+							return newCoins;
+						});
+						setCompletedSessions(prev => {
+							const newSessions = prev + 1;
+							localStorage.setItem(
+								'completedSessions',
+								JSON.stringify(newSessions)
+							); // Save to local storage
+							return newSessions;
+						});
 						alarm.play();
 						return 0;
 					}
@@ -72,12 +87,17 @@ function App() {
 			.padStart(2, '0')}`;
 	};
 
-	const [coins, setCoins] = useState(100); // Starting coins
-	const [completedSessions, setCompletedSessions] = useState(0);
+	const [coins, setCoins] = useState(getStoredData('coins') || 50);
+	const [completedSessions, setCompletedSessions] = useState(
+		getStoredData('completedSessions') || 0
+	);
 
 	const handlePurchase = cost => {
 		if (coins >= cost) {
-			setCoins(prevCoins => prevCoins - cost);
+			const newCoins = coins - cost;
+			setCoins(newCoins);
+			localStorage.setItem('coins', JSON.stringify(newCoins)); // Save to local storage
+			coin.play();
 		} else {
 			alert('Not enough coins!');
 		}
@@ -86,13 +106,13 @@ function App() {
 	return (
 		<>
 			<div className='text-center'>
-				<h3>Coin Balance: {coins} 🪙</h3>
-				<p>Completed Pomodoro Sessions: {completedSessions} ✅</p>
-				<p>1 Session = 20 Coins</p>
+				<h3>Zen Tokens: {coins} 🥟</h3>
+				<p>Pomodoro Sessions: {completedSessions} ✅</p>
+				<p>1 Session = 20 Tokens</p>
 			</div>
 
 			<div className='container pomodoro text-center'>
-				<h1>Pomodoro Timer</h1>
+				<h1>Pomodoro Timer ⏲️</h1>
 				<div className='timer'>{formatTime(time)}</div>
 				<div className='controls'>
 					<button
