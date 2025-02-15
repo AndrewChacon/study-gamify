@@ -11,28 +11,26 @@ function App() {
 		{
 			item_name: 'Coins',
 			item_price: 30,
-			item_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
+			item_img: '🪙',
 			cost_name: 'Min Episode',
 			cost_price: 20,
-			cost_img: 'https://www.svgrepo.com/show/477110/tv.svg',
+			cost_img: '📺',
 		},
 		{
 			item_name: 'Coins',
 			item_price: 40,
-			item_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
+			item_img: '🪙',
 			cost_name: 'Min Gaming',
 			cost_price: 30,
-			cost_img:
-				'https://www.svgrepo.com/show/288490/joystick-game-controller.svg',
+			cost_img: '🕹️',
 		},
 		{
 			item_name: 'Coins',
 			item_price: 75,
-			item_img: 'https://www.svgrepo.com/show/244697/coins-money.svg',
+			item_img: '🪙',
 			cost_name: 'Hour Gaming',
 			cost_price: 1,
-			cost_img:
-				'https://www.svgrepo.com/show/288490/joystick-game-controller.svg',
+			cost_img: '🎮',
 		},
 	]);
 	const [time, setTime] = useState(1 * 60);
@@ -104,24 +102,21 @@ function App() {
 	};
 
 	return (
-		<>
-			<div className='text-center'>
+		<div className='app-container'>
+			<header>
 				<h3>Zen Tokens: {coins} 🥟</h3>
 				<p>Pomodoro Sessions: {completedSessions} ✅</p>
 				<p>1 Session = 20 Tokens</p>
-			</div>
+			</header>
 
-			<div className='container pomodoro text-center'>
+			<section className='pomodoro-timer'>
 				<h1>Pomodoro Timer ⏲️</h1>
 				<div className='timer'>{formatTime(time)}</div>
 				<div className='controls'>
-					<button
-						className='btn btn-primary'
-						onClick={() => setIsRunning(!isRunning)}>
+					<button onClick={() => setIsRunning(!isRunning)}>
 						{isRunning ? 'Pause' : 'Start'}
 					</button>
 					<button
-						className='btn btn-danger'
 						onClick={() => {
 							setIsRunning(false);
 							setTime(1 * 60);
@@ -129,9 +124,35 @@ function App() {
 						Reset
 					</button>
 				</div>
-			</div>
+			</section>
 
-			<div className='container text-center'>
+			<section className='shop'>
+				<h2>Shop</h2>
+				<div className='shop-items'>
+					{items.map((item, index) => (
+						<div key={index} className='shop-item'>
+							<p>
+								{item.item_img} {item.item_price}{' '}
+								{item.item_name}
+							</p>
+							=
+							<p>
+								{item.cost_img} {item.cost_price}{' '}
+								{item.cost_name}
+							</p>
+							<button
+								onClick={() => handlePurchase(item.item_price)}
+								disabled={coins < item.item_price}>
+								{coins < item.item_price
+									? 'Not Enough Coins'
+									: 'Buy'}
+							</button>
+						</div>
+					))}
+				</div>
+			</section>
+
+			{/* <div className='container text-center'>
 				<div className='col p-4'>
 					{items.map((item, index) => (
 						<div key={index} className='row mb-3'>
@@ -180,8 +201,8 @@ function App() {
 						</div>
 					))}
 				</div>
-			</div>
-		</>
+			</div> */}
+		</div>
 	);
 }
 
