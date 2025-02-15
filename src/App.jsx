@@ -33,7 +33,7 @@ function App() {
 			cost_img: '🎮',
 		},
 	]);
-	const [time, setTime] = useState(1 * 60);
+	const [time, setTime] = useState(30 * 60);
 	const [isRunning, setIsRunning] = useState(false);
 
 	useEffect(() => {
@@ -48,7 +48,7 @@ function App() {
 				setTime(prevTime => {
 					if (prevTime <= 1) {
 						setIsRunning(false);
-						setTime(1 * 60);
+						setTime(30 * 60);
 						setCoins(prevCoins => {
 							const newCoins = prevCoins + 20;
 							localStorage.setItem(
@@ -119,7 +119,7 @@ function App() {
 					<button
 						onClick={() => {
 							setIsRunning(false);
-							setTime(1 * 60);
+							setTime(30 * 60);
 						}}>
 						Reset
 					</button>
