@@ -98,17 +98,25 @@ button:disabled {
 /* Shop */
 .shop {
 	margin-top: 20px;
+	width: 60%;
+	margin: 0 auto;
 }
 
 .shop-item {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	background: #fff;
 	padding: 10px;
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	margin-bottom: 10px;
+}
+.ml {
+	margin-left: 5px;
+}
+.mr {
+	margin-right: 5px;
 }
 
 /* Make shop items stack on smaller screens */

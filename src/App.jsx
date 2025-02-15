@@ -12,7 +12,7 @@ function App() {
 			item_name: 'Coins',
 			item_price: 30,
 			item_img: '🪙',
-			cost_name: 'Min Episode',
+			cost_name: 'Min',
 			cost_price: 20,
 			cost_img: '📺',
 		},
@@ -20,7 +20,7 @@ function App() {
 			item_name: 'Coins',
 			item_price: 40,
 			item_img: '🪙',
-			cost_name: 'Min Gaming',
+			cost_name: 'Min',
 			cost_price: 30,
 			cost_img: '🕹️',
 		},
@@ -28,7 +28,7 @@ function App() {
 			item_name: 'Coins',
 			item_price: 75,
 			item_img: '🪙',
-			cost_name: 'Hour Gaming',
+			cost_name: 'Hour',
 			cost_price: 1,
 			cost_img: '🎮',
 		},
@@ -131,21 +131,17 @@ function App() {
 				<div className='shop-items'>
 					{items.map((item, index) => (
 						<div key={index} className='shop-item'>
-							<p>
-								{item.item_img} {item.item_price}{' '}
-								{item.item_name}
+							<p className='mr'>
+								{`${item.item_img} ${item.item_price} ${item.item_name}`}
 							</p>
-							=
-							<p>
-								{item.cost_img} {item.cost_price}{' '}
-								{item.cost_name}
+							{'='}
+							<p className='mr ml'>
+								{`${item.cost_img} ${item.cost_price} ${item.cost_name}`}
 							</p>
 							<button
 								onClick={() => handlePurchase(item.item_price)}
 								disabled={coins < item.item_price}>
-								{coins < item.item_price
-									? 'Not Enough Coins'
-									: 'Buy'}
+								{coins < item.item_price ? 'Trade' : 'Trade'}
 							</button>
 						</div>
 					))}
