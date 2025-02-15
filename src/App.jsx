@@ -85,8 +85,8 @@ function App() {
 			.padStart(2, '0')}`;
 	};
 
-	// const [coins, setCoins] = useState(getStoredData('coins') || 50);
-	const [coins, setCoins] = useState(100);
+	const [coins, setCoins] = useState(getStoredData('coins') || 50);
+	// const [coins, setCoins] = useState(100); // used for testing
 	const [completedSessions, setCompletedSessions] = useState(
 		getStoredData('completedSessions') || 0
 	);
