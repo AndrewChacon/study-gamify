@@ -13,10 +13,9 @@ body {
 body {
 	height: 100vh;
 	background-image: url(https://wallpapersok.com/images/hd/japan-city-street-purple-aesthetic-5gie0uq00n6a4bfv.jpg);
-	background-size: cover;
-	background-position: center;
-	background-color: #fff;
-	background-repeat: no-repeat;
+	background-size: cover; /* Ensures the image covers the screen */
+	background-position: center; /* Centers the image */
+	background-repeat: no-repeat; /* Prevents repetition */
 }
 
 .timer-container {
