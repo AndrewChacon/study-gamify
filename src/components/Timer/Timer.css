@@ -1,0 +1,67 @@
+:root {
+	--primary: #ff34b3; /* Main color */
+}
+
+body {
+	height: 100vh;
+	background-image: url(https://wallpapersok.com/images/hd/japan-city-street-purple-aesthetic-5gie0uq00n6a4bfv.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+.timer-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.circle {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.timer-text {
+	position: absolute;
+	font-size: 2rem;
+	color: white;
+	text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+}
+
+svg {
+	transform: rotate(-90deg);
+}
+
+.progress-ring {
+	transition: stroke-dashoffset 1s linear;
+	stroke-linecap: round;
+	filter: drop-shadow(0 0 10px var(--primary));
+}
+
+.icon {
+	width: 15px;
+}
+
+.buttons {
+	margin-top: 20px;
+	display: flex;
+	width: 120px;
+	justify-content: space-around;
+}
+
+button {
+	border: none;
+	cursor: pointer;
+	font-size: 12px;
+	border-radius: 25px;
+	width: 50px;
+	height: 50px;
+	color: white;
+	background: var(--primary);
+	color: #222;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 0 15px var(--primary);
+}

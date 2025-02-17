@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import alarmSound from './assets/alarm_sound.wav';
 import coinSound from './assets/coin_sound.wav';
+import CircleTimer from './components/Timer/Timer';
 
 function App() {
 	const alarm = new Audio(alarmSound);
@@ -85,8 +86,8 @@ function App() {
 			.padStart(2, '0')}`;
 	};
 
-	const [coins, setCoins] = useState(getStoredData('coins') || 0);
-	// const [coins, setCoins] = useState(100); // used for testing
+	// const [coins, setCoins] = useState(getStoredData('coins') || 0);
+	const [coins, setCoins] = useState(100); // used for testing
 	const [completedSessions, setCompletedSessions] = useState(
 		getStoredData('completedSessions') || 0
 	);
@@ -104,12 +105,13 @@ function App() {
 
 	return (
 		<div className='app-container'>
-			<header>
+			{/* <header>
 				<p>🪙: {coins}</p>
 				<p>⏲️: {completedSessions} ✅</p>
-			</header>
+			</header> */}
+			<CircleTimer />
 
-			<section className='pomodoro-timer'>
+			{/* <section className='pomodoro-timer'>
 				<h1>Pomodoro Timer</h1>
 				<div className='timer'>{formatTime(time)}</div>
 				<div className='controls'>
@@ -124,9 +126,9 @@ function App() {
 						🔄
 					</button>
 				</div>
-			</section>
+			</section> */}
 
-			<section className='shop'>
+			{/* <section className='shop'>
 				<h2>Shop</h2>
 				<div className='shop-items'>
 					{items.map((item, index) => (
@@ -147,58 +149,7 @@ function App() {
 						</div>
 					))}
 				</div>
-			</section>
-
-			{/* <div className='container text-center'>
-				<div className='col p-4'>
-					{items.map((item, index) => (
-						<div key={index} className='row mb-3'>
-							<div className='col'>
-								<img
-									className='icon'
-									src={item.item_img}
-									alt=''
-								/>
-								<p>
-									{item.item_price} {item.item_name}
-								</p>
-							</div>
-							<div className='col'>
-								<img
-									className='icon'
-									src={
-										'https://www.svgrepo.com/show/535367/equals.svg'
-									}
-									alt=''
-								/>
-							</div>
-							<div className='col'>
-								<img
-									className='icon'
-									src={item.cost_img}
-									alt=''
-								/>
-								<p>
-									{item.cost_price} {item.cost_name}
-								</p>
-							</div>
-							<div className='col'>
-								<button
-									className='btn btn-success'
-									onClick={() => {
-										coin.play();
-										handlePurchase(item.item_price);
-									}}
-									disabled={coins < item.item_price}>
-									{coins < item.item_price
-										? 'Not Enough Coins'
-										: 'Buy'}
-								</button>
-							</div>
-						</div>
-					))}
-				</div>
-			</div> */}
+			</section> */}
 		</div>
 	);
 }
