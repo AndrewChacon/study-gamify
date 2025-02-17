@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './Timer.css';
-import PlayIcon from '../../assets/play-svgrepo-com.svg';
-import PauseIcon from '../../assets/pauze-svgrepo-com.svg';
-import RestartIcon from '../../assets/refresh-svgrepo-com.svg';
+import PlayIcon from '../../assets/icons/play-svgrepo-com.svg';
+import PauseIcon from '../../assets/icons/pauze-svgrepo-com.svg';
+import RestartIcon from '../../assets/icons/refresh-svgrepo-com.svg';
+import alarmSound from '../../assets/sounds/alarm_sound.wav';
 
-const CircleTimer = () => {
-	const totalTime = 1500; // Total timer duration in seconds
+const CircleTimer = ({ setCoins, setCompletedSessions }) => {
+	const totalTime = 10; // Total timer duration in seconds
 	const [time, setTime] = useState(totalTime);
 	const [isRunning, setIsRunning] = useState(false);
+	const alarm = new Audio(alarmSound);
 
 	const formatTime = seconds => {
 		const minutes = Math.floor(seconds / 60);
@@ -19,16 +21,39 @@ const CircleTimer = () => {
 
 	useEffect(() => {
 		let timer;
-		if (isRunning && time > 0) {
+		if (isRunning) {
 			timer = setInterval(() => {
-				setTime(prevTime => prevTime - 1);
+				setTime(prevTime => {
+					if (prevTime <= 0) {
+						setIsRunning(false);
+						setTime(totalTime);
+						setCoins(prevCoins => {
+							const newCoins = prevCoins + 20;
+							localStorage.setItem(
+								'coins',
+								JSON.stringify(newCoins)
+							);
+							return newCoins;
+						});
+						setCompletedSessions(prev => {
+							const newSessions = prev + 1;
+							localStorage.setItem(
+								'completedSessions',
+								JSON.stringify(newSessions)
+							); // Save to local storage
+							return newSessions;
+						});
+						alarm.play();
+						return 0;
+					}
+					return prevTime - 1;
+				});
 			}, 1000);
-		} else if (time === 0) {
-			setIsRunning(false);
+		} else {
+			clearInterval(timer);
 		}
-
 		return () => clearInterval(timer);
-	}, [isRunning, time]);
+	}, [isRunning]);
 
 	const resetTimer = () => {
 		setIsRunning(false);

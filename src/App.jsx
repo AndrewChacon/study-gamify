@@ -1,155 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
-import alarmSound from './assets/alarm_sound.wav';
-import coinSound from './assets/coin_sound.wav';
+import React, { useState } from 'react';
 import CircleTimer from './components/Timer/Timer';
+import Header from './components/Header/header';
+// import Shop from './components/Shop/Shop';
 
 function App() {
-	const alarm = new Audio(alarmSound);
-	const coin = new Audio(coinSound);
-	const effectRun = useRef(false);
 	const getStoredData = key => JSON.parse(localStorage.getItem(key)) || 0;
-	const [items, setItems] = useState([
-		{
-			item_name: 'Coins',
-			item_price: 30,
-			item_img: '🪙',
-			cost_name: 'Min',
-			cost_price: 20,
-			cost_img: '📺',
-		},
-		{
-			item_name: 'Coins',
-			item_price: 40,
-			item_img: '🪙',
-			cost_name: 'Min',
-			cost_price: 30,
-			cost_img: '🕹️',
-		},
-		{
-			item_name: 'Coins',
-			item_price: 75,
-			item_img: '🪙',
-			cost_name: 'Hour',
-			cost_price: 1,
-			cost_img: '🎮',
-		},
-	]);
-	const [time, setTime] = useState(30 * 60);
-	const [isRunning, setIsRunning] = useState(false);
-
-	useEffect(() => {
-		if (!effectRun.current) {
-			effectRun.current = true;
-			return;
-		}
-
-		let timer;
-		if (isRunning) {
-			timer = setInterval(() => {
-				setTime(prevTime => {
-					if (prevTime <= 1) {
-						setIsRunning(false);
-						setTime(30 * 60);
-						setCoins(prevCoins => {
-							const newCoins = prevCoins + 20;
-							localStorage.setItem(
-								'coins',
-								JSON.stringify(newCoins)
-							); // Save to local storage
-							return newCoins;
-						});
-						setCompletedSessions(prev => {
-							const newSessions = prev + 1;
-							localStorage.setItem(
-								'completedSessions',
-								JSON.stringify(newSessions)
-							); // Save to local storage
-							return newSessions;
-						});
-						alarm.play();
-						return 0;
-					}
-					return prevTime - 1;
-				});
-			}, 1000);
-		} else {
-			clearInterval(timer);
-		}
-		return () => clearInterval(timer);
-	}, [isRunning]);
-
-	const formatTime = seconds => {
-		const minutes = Math.floor(seconds / 60);
-		const secs = seconds % 60;
-		return `${minutes.toString().padStart(2, '0')}:${secs
-			.toString()
-			.padStart(2, '0')}`;
-	};
-
-	// const [coins, setCoins] = useState(getStoredData('coins') || 0);
-	const [coins, setCoins] = useState(100); // used for testing
+	const [coins, setCoins] = useState(getStoredData('coins') || 0);
+	// const [coins, setCoins] = useState(100); // used for testing
 	const [completedSessions, setCompletedSessions] = useState(
 		getStoredData('completedSessions') || 0
 	);
 
-	const handlePurchase = cost => {
-		if (coins >= cost) {
-			const newCoins = coins - cost;
-			setCoins(newCoins);
-			localStorage.setItem('coins', JSON.stringify(newCoins)); // Save to local storage
-			coin.play();
-		} else {
-			alert('Not enough coins!');
-		}
-	};
-
 	return (
 		<div className='app-container'>
-			{/* <header>
-				<p>🪙: {coins}</p>
-				<p>⏲️: {completedSessions} ✅</p>
-			</header> */}
-			<CircleTimer />
-
-			{/* <section className='pomodoro-timer'>
-				<h1>Pomodoro Timer</h1>
-				<div className='timer'>{formatTime(time)}</div>
-				<div className='controls'>
-					<button onClick={() => setIsRunning(!isRunning)}>
-						{isRunning ? '⏸️' : '▶️'}
-					</button>
-					<button
-						onClick={() => {
-							setIsRunning(false);
-							setTime(30 * 60);
-						}}>
-						🔄
-					</button>
-				</div>
-			</section> */}
-
-			{/* <section className='shop'>
-				<h2>Shop</h2>
-				<div className='shop-items'>
-					{items.map((item, index) => (
-						<div key={index} className='shop-item'>
-							<p className='mr'>
-								{`${item.item_img} ${item.item_price} ${item.item_name}`}
-							</p>
-							{'='}
-							<p className='mr ml'>
-								{`${item.cost_img} ${item.cost_price} ${item.cost_name}`}
-							</p>
-							<button
-								className='btn-success'
-								onClick={() => handlePurchase(item.item_price)}
-								disabled={coins < item.item_price}>
-								{coins < item.item_price ? 'Trade' : 'Trade'}
-							</button>
-						</div>
-					))}
-				</div>
-			</section> */}
+			<Header coins={coins} completedSessions={completedSessions} />
+			<CircleTimer
+				setCoins={setCoins}
+				setCompletedSessions={setCompletedSessions}
+			/>
+			{/* <Shop coins={coins} /> */}
 		</div>
 	);
 }
