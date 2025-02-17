@@ -2,11 +2,20 @@
 	--primary: #ff34b3; /* Main color */
 }
 
+html,
+body {
+	height: 100dvh; /* Dynamic viewport height */
+	margin: 0;
+	padding: 0;
+	overflow: hidden; /* Prevent scrolling */
+}
+
 body {
 	height: 100vh;
 	background-image: url(https://wallpapersok.com/images/hd/japan-city-street-purple-aesthetic-5gie0uq00n6a4bfv.jpg);
 	background-size: cover;
 	background-position: center;
+	background-color: #fff;
 }
 
 .timer-container {
