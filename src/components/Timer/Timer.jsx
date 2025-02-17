@@ -6,7 +6,7 @@ import RestartIcon from '../../assets/icons/refresh-svgrepo-com.svg';
 import alarmSound from '../../assets/sounds/alarm_sound.wav';
 
 const CircleTimer = ({ setCoins, setCompletedSessions }) => {
-	const totalTime = 10; // Total timer duration in seconds
+	const totalTime = 1500; // Total timer duration in seconds
 	const [time, setTime] = useState(totalTime);
 	const [isRunning, setIsRunning] = useState(false);
 	const alarm = new Audio(alarmSound);
