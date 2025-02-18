@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CircleTimer from './components/Timer/Timer';
 import Header from './components/Header/header';
-// import Shop from './components/Shop/Shop';
+import Shop from './components/Shop/Shop';
 
 function App() {
 	const getStoredData = key => JSON.parse(localStorage.getItem(key)) || 0;
@@ -12,13 +12,13 @@ function App() {
 	);
 
 	return (
-		<div className='app-container'>
+		<div className='content'>
 			<Header coins={coins} completedSessions={completedSessions} />
 			<CircleTimer
 				setCoins={setCoins}
 				setCompletedSessions={setCompletedSessions}
 			/>
-			{/* <Shop coins={coins} /> */}
+			<Shop coins={coins} setCoins={setCoins} />
 		</div>
 	);
 }

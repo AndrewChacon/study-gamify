@@ -10,24 +10,36 @@
 6fffe9
 */
 
+html,
 body {
-	/* background-color: #0b132b; */
+	height: 100%;
+	margin: 0;
+	overflow-x: hidden;
+}
+
+body {
+	background-color: #000;
 	color: #ff34b3;
 	text-align: center;
-	margin: 0;
-	padding: 0;
-
 	font-family: 'Orbitron', serif;
 	font-optical-sizing: auto;
 	font-weight: 400;
 	font-style: normal;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	background-image: url(https://wallpapersok.com/images/hd/japan-city-street-purple-aesthetic-5gie0uq00n6a4bfv.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
 
-	/* font-family: 'Press Start 2P', serif;
-	font-weight: 400;
-	font-style: normal; */
+.content {
+	height: 200vh;
+	padding: 20px;
+	font-size: 24px;
+	color: white;
 }
 
 body::before {
@@ -43,7 +55,7 @@ body::before {
 
 header {
 	display: block;
-	width: 70px;
+	width: 100px;
 	text-align: left;
 	margin: 0 0 50px auto;
 	padding: none;
@@ -63,7 +75,6 @@ header p {
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive for small screens */
 @media (max-width: 768px) {
 	.container {
 		width: 90%;
@@ -71,20 +82,17 @@ header p {
 	}
 }
 
-/* Header */
 h1 {
 	font-size: 24px;
 	margin-bottom: 10px;
 }
 
-/* Timer */
 .timer {
 	font-size: 48px;
 	font-weight: bold;
 	margin: 10px 0;
 }
 
-/* Controls */
 .controls {
 	display: flex;
 	justify-content: center;
@@ -98,7 +106,6 @@ h1 {
 }
 
 button {
-	/* padding: 10px 15px; */
 	border: none;
 	border-radius: 5px;
 	font-size: 20px;
@@ -125,13 +132,11 @@ button:disabled {
 	background-color: #27ae60;
 }
 
-/* Coin Balance */
 .coin-balance {
 	font-size: 18px;
 	margin-bottom: 10px;
 }
 
-/* Shop */
 .shop {
 	margin-top: 20px;
 	width: 60%;
@@ -155,17 +160,13 @@ button:disabled {
 	margin-right: 5px;
 }
 
-/* Make shop items stack on smaller screens */
 @media (max-width: 480px) {
 	.shop {
 		width: 85%;
-
-		/**/
 		margin: 0 auto;
 	}
 
 	.shop-item {
-		/* flex-direction: column; */
 		align-items: center;
 		text-align: center;
 		padding: 15px;
@@ -181,13 +182,11 @@ button:disabled {
 	height: 40px;
 }
 
-/* Shop Button */
 .shop-item button {
 	padding: 5px 10px;
 	font-size: 14px;
 }
 
-/* Icon */
 .icon {
 	width: 40px;
 	height: 40px;

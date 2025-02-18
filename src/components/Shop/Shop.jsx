@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 
-function Shop({ coins }) {
+function Shop({ coins, setCoins }) {
 	const [items, setItems] = useState([
+		{
+			item_name: 'Coins',
+			item_price: 10,
+			item_img: '🪙',
+			cost_name: 'Chapter',
+			cost_price: 1,
+			cost_img: '📖',
+		},
 		{
 			item_name: 'Coins',
 			item_price: 30,
