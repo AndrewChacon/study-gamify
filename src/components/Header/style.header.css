@@ -1,0 +1,17 @@
+:root {
+	--primary: #ff34b3; /* Main color */
+}
+
+header {
+	display: block;
+	width: 100px;
+	text-align: left;
+	margin: 0 0 50px auto;
+	padding: none;
+}
+
+header p {
+	padding: 0;
+	margin: 10px 0;
+	text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+}

@@ -1,3 +1,5 @@
+import './style.header.css';
+
 const Header = ({ coins, completedSessions }) => {
 	return (
 		<header>

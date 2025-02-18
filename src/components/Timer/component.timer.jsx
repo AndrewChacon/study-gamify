@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './Timer.css';
 import PlayIcon from '../../assets/icons/play-svgrepo-com.svg';
 import PauseIcon from '../../assets/icons/pauze-svgrepo-com.svg';
 import RestartIcon from '../../assets/icons/refresh-svgrepo-com.svg';
 import alarmSound from '../../assets/sounds/alarm_sound.wav';
+import './style.timer.css';
 
 const CircleTimer = ({ setCoins, setCompletedSessions }) => {
-	const totalTime = 1500; // Total timer duration in seconds
+	const totalTime = 1500;
 	const [time, setTime] = useState(totalTime);
 	const [isRunning, setIsRunning] = useState(false);
 	const alarm = new Audio(alarmSound);
@@ -40,7 +40,7 @@ const CircleTimer = ({ setCoins, setCompletedSessions }) => {
 							localStorage.setItem(
 								'completedSessions',
 								JSON.stringify(newSessions)
-							); // Save to local storage
+							);
 							return newSessions;
 						});
 						alarm.play();
@@ -60,7 +60,7 @@ const CircleTimer = ({ setCoins, setCompletedSessions }) => {
 		setTime(totalTime);
 	};
 
-	const progress = (time / totalTime) * 565; // 314 is full circle circumference
+	const progress = (time / totalTime) * 565;
 
 	return (
 		<div className='timer-container'>
@@ -81,22 +81,24 @@ const CircleTimer = ({ setCoins, setCompletedSessions }) => {
 						stroke='var(--primary)'
 						strokeWidth='10'
 						fill='none'
-						strokeDasharray='565' // 2 * π * 90
+						strokeDasharray='565'
 						strokeDashoffset={565 - progress}
 						className='progress-ring'
 					/>
 				</svg>
 				<span className='timer-text'>{formatTime(time)}</span>
 			</div>
-			<div className='buttons'>
-				<button onClick={() => setIsRunning(!isRunning)}>
+			<div className='controls-container'>
+				<button
+					className='controls-button'
+					onClick={() => setIsRunning(!isRunning)}>
 					{isRunning ? (
 						<img className='icon' src={PauseIcon} alt='' />
 					) : (
 						<img className='icon' src={PlayIcon} alt='' />
 					)}
 				</button>
-				<button onClick={resetTimer}>
+				<button className='controls-button' onClick={resetTimer}>
 					<img className='icon' src={RestartIcon} alt='' />
 				</button>
 			</div>

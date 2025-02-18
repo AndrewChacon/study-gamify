@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CircleTimer from './components/Timer/Timer';
-import Header from './components/Header/header';
-import Shop from './components/Shop/Shop';
+import CircleTimer from './components/Timer/component.timer';
+import Header from './components/Header/component.header';
+import Shop from './components/Shop/component.shop';
 
 function App() {
 	const getStoredData = key => JSON.parse(localStorage.getItem(key)) || 0;

@@ -1,5 +1,5 @@
 :root {
-	--primary: #ff34b3; /* Main color */
+	--primary: #ff34b3;
 }
 
 .timer-container {
@@ -37,14 +37,14 @@ svg {
 	width: 15px;
 }
 
-.buttons {
+.controls-container {
 	margin-top: 20px;
 	display: flex;
 	width: 120px;
 	justify-content: space-around;
 }
 
-button {
+.controls-button {
 	border: none;
 	cursor: pointer;
 	font-size: 12px;
