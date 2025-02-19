@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.shop-card {
+	background: rgba(10, 10, 20, 0.85);
+	border-radius: 15px;
+	padding: 20px;
+	box-shadow: 0px 0px 15px rgba(255, 20, 147, 0.8);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 350px;
+	margin: 10px auto;
+	border: 2px solid #ff34b3;
+	transition: transform 0.2s ease-in-out;
+}
+
+.shop-card:hover {
+	transform: scale(1.05);
+	box-shadow: 0px 0px 25px rgba(255, 20, 147, 1);
+}
+
+.shop-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.item-icon {
+	font-size: 2rem;
+	margin-right: 15px;
+}
+
+.item-info {
+	flex-grow: 1;
+}
+
+.item-name {
+	color: #ff34b3;
+	font-size: 1.2rem;
+	font-family: 'Orbitron', sans-serif;
+	margin: 0;
+}
+
+.item-price {
+	color: #ddd;
+	font-size: 1rem;
+	font-family: 'Orbitron', sans-serif;
+	margin: 5px 0 0;
+}
+
+.shop-button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 25px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: 'Orbitron', sans-serif;
+	background: #ff34b3;
+	color: #000;
+	transition: all 0.3s ease-in-out;
+	box-shadow: 0px 0px 10px rgba(255, 20, 147, 0.6);
+}
+
+.shop-button:hover {
+	background: #ff69b4;
+	box-shadow: 0px 0px 15px rgba(255, 20, 147, 1);
+	transform: translateY(-2px);
+}
+
+.shop-button:disabled {
+	background: gray;
+	box-shadow: none;
+	cursor: not-allowed;
+}
+
+.shop-spacer {
+	color: rgba(0, 0, 0, 0);
+	width: 60px;
+}

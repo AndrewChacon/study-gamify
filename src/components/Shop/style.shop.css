@@ -7,38 +7,3 @@
 .shop-title {
 	font-size: 30px;
 }
-
-.shop-item {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: #1c2541;
-	padding: 10px;
-	border-radius: 5px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	margin-bottom: 10px;
-}
-
-.shop-button {
-	padding: 5px 10px;
-	font-size: 14px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: 0.3s ease-in-out;
-	background-color: #f4f4f4;
-	font-family: 'Orbitron', serif;
-	font-optical-sizing: auto;
-	font-weight: 400;
-	font-style: normal;
-	color: #3a506b;
-}
-
-.shop-button:disabled {
-	opacity: 0.5;
-	cursor: not-allowed;
-}
-
-.shop-button:hover {
-	background-color: #b0b0b0;
-}
