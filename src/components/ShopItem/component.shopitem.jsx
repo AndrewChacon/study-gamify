@@ -17,7 +17,9 @@ function ShopItem({ item, coins, setCoins }) {
 		<div className='shop-card'>
 			<p className='shop-spacer'></p>
 			<div className='item-info'>
-				<h3 className='item-name'>{item.item_name}</h3>
+				<h3 className='item-name'>
+					{item.cost_price} {item.cost_name}
+				</h3>
 				<p className='item-price'>
 					{item.item_price} 🪙 | {item.cost_price} {item.cost_img}
 				</p>
