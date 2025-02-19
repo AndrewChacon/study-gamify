@@ -1,14 +1,15 @@
 .shop {
 	margin-top: 20px;
-	width: 60%;
+	width: 500px;
 	margin: 0 auto;
 }
 
 .shop-title {
 	font-size: 30px;
+	text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 	.shop {
 		width: 90%;
 	}

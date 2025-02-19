@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=Electrolize&family=Jura:wght@300..700&family=Orbitron:wght@400..900&display=swap');
 
+:root {
+	--primary: #ff34b3;
+}
+
 html,
 body {
 	height: 100%;
@@ -37,8 +41,13 @@ body::before {
 }
 
 .content {
-	height: 200vh;
+	height: 140vh;
 	padding: 20px;
-	/* font-size: 24px; */
 	color: white;
+}
+
+@media (max-width: 600px) {
+	.content {
+		height: 200vh;
+	}
 }

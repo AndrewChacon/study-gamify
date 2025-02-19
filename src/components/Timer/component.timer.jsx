@@ -65,24 +65,24 @@ const CircleTimer = ({ setCoins, setCompletedSessions }) => {
 	return (
 		<div className='timer-container'>
 			<div className='circle'>
-				<svg width='200' height='200'>
+				<svg width='300' height='300'>
 					<circle
-						cx='100'
-						cy='100'
-						r='90'
+						cx='150'
+						cy='150'
+						r='140'
 						stroke='#333'
-						strokeWidth='10'
+						strokeWidth='12'
 						fill='none'
 					/>
 					<circle
-						cx='100'
-						cy='100'
-						r='90'
+						cx='150'
+						cy='150'
+						r='140'
 						stroke='var(--primary)'
-						strokeWidth='10'
+						strokeWidth='12'
 						fill='none'
-						strokeDasharray='565'
-						strokeDashoffset={565 - progress}
+						strokeDasharray='880'
+						strokeDashoffset={880 - (time / totalTime) * 880}
 						className='progress-ring'
 					/>
 				</svg>

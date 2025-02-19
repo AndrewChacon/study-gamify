@@ -78,7 +78,7 @@
 	width: 60px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 	.shop-card {
 		flex-direction: column;
 		max-width: 90%;
