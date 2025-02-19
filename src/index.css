@@ -48,6 +48,6 @@ body::before {
 
 @media (max-width: 600px) {
 	.content {
-		height: 200vh;
+		height: 220vh;
 	}
 }
