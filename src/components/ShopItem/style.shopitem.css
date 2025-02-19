@@ -8,8 +8,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 100%;
-	max-width: 350px;
 	margin: 10px auto;
 	border: 2px solid #ff34b3;
 	transition: transform 0.2s ease-in-out;
@@ -56,10 +54,9 @@
 	border-radius: 25px;
 	cursor: pointer;
 	font-size: 14px;
-	font-weight: bold;
 	font-family: 'Orbitron', sans-serif;
 	background: #ff34b3;
-	color: #000;
+	color: #ddd;
 	transition: all 0.3s ease-in-out;
 	box-shadow: 0px 0px 10px rgba(255, 20, 147, 0.6);
 }
@@ -79,4 +76,34 @@
 .shop-spacer {
 	color: rgba(0, 0, 0, 0);
 	width: 60px;
+}
+
+@media (max-width: 768px) {
+	.shop-card {
+		flex-direction: column;
+		max-width: 90%;
+		padding: 30px 0;
+		align-items: center;
+	}
+
+	.shop-spacer {
+		display: none;
+	}
+
+	.shop-button {
+		margin-top: 10px;
+	}
+
+	.item-name {
+		font-size: 25px;
+		margin-bottom: 10px;
+	}
+	.item-price {
+		font-size: 25px;
+	}
+
+	.shop-button {
+		font-size: 18px;
+		padding: 15px 25px;
+	}
 }

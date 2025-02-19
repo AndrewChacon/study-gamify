@@ -7,3 +7,9 @@
 .shop-title {
 	font-size: 30px;
 }
+
+@media (max-width: 768px) {
+	.shop {
+		width: 90%;
+	}
+}
