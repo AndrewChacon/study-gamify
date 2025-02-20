@@ -6,10 +6,61 @@ import alarmSound from '../../assets/sounds/alarm_sound.wav';
 import './style.timer.css';
 
 const CircleTimer = ({ setCoins, setCompletedSessions }) => {
-	const totalTime = 1500;
+	const totalTime = 180;
 	const [time, setTime] = useState(totalTime);
 	const [isRunning, setIsRunning] = useState(false);
+	const [startTime, setStartTime] = useState(null);
+	const [expectedEndTime, setExpectedEndTime] = useState(null);
 	const alarm = new Audio(alarmSound);
+
+	useEffect(() => {
+		let timer;
+
+		if (isRunning) {
+			const now = Date.now();
+			if (!startTime) {
+				setStartTime(now);
+				setExpectedEndTime(now + time * 1000);
+			}
+
+			timer = setTimeout(function updateTimer() {
+				const remainingTime = Math.max(
+					0,
+					Math.round((expectedEndTime - Date.now()) / 1000)
+				);
+				setTime(remainingTime);
+
+				if (remainingTime > 0) {
+					timer = setTimeout(updateTimer, 1000);
+				} else {
+					// Timer completed
+					setIsRunning(false);
+					setTime(totalTime);
+					setStartTime(null);
+					setExpectedEndTime(null);
+
+					setCoins(prevCoins => {
+						const newCoins = prevCoins + 20;
+						localStorage.setItem('coins', JSON.stringify(newCoins));
+						return newCoins;
+					});
+
+					setCompletedSessions(prev => {
+						const newSessions = prev + 1;
+						localStorage.setItem(
+							'completedSessions',
+							JSON.stringify(newSessions)
+						);
+						return newSessions;
+					});
+
+					alarm.play();
+				}
+			}, 1000);
+		}
+
+		return () => clearTimeout(timer);
+	}, [isRunning]);
 
 	const formatTime = seconds => {
 		const minutes = Math.floor(seconds / 60);
@@ -19,45 +70,28 @@ const CircleTimer = ({ setCoins, setCompletedSessions }) => {
 			.padStart(2, '0')}`;
 	};
 
-	useEffect(() => {
-		let timer;
+	const toggleTimer = () => {
 		if (isRunning) {
-			timer = setInterval(() => {
-				setTime(prevTime => {
-					if (prevTime <= 0) {
-						setIsRunning(false);
-						setTime(totalTime);
-						setCoins(prevCoins => {
-							const newCoins = prevCoins + 20;
-							localStorage.setItem(
-								'coins',
-								JSON.stringify(newCoins)
-							);
-							return newCoins;
-						});
-						setCompletedSessions(prev => {
-							const newSessions = prev + 1;
-							localStorage.setItem(
-								'completedSessions',
-								JSON.stringify(newSessions)
-							);
-							return newSessions;
-						});
-						alarm.play();
-						return 0;
-					}
-					return prevTime - 1;
-				});
-			}, 1000);
+			// Pause: Stop and calculate remaining time
+			setTime(
+				Math.max(0, Math.round((expectedEndTime - Date.now()) / 1000))
+			);
+			setStartTime(null);
+			setExpectedEndTime(null);
 		} else {
-			clearInterval(timer);
+			// Resume: Recalculate expected end time
+			const now = Date.now();
+			setStartTime(now);
+			setExpectedEndTime(now + time * 1000);
 		}
-		return () => clearInterval(timer);
-	}, [isRunning]);
+		setIsRunning(!isRunning);
+	};
 
 	const resetTimer = () => {
 		setIsRunning(false);
 		setTime(totalTime);
+		setStartTime(null);
+		setExpectedEndTime(null);
 	};
 
 	const progress = (time / totalTime) * 565;
@@ -89,9 +123,7 @@ const CircleTimer = ({ setCoins, setCompletedSessions }) => {
 				<span className='timer-text'>{formatTime(time)}</span>
 			</div>
 			<div className='controls-container'>
-				<button
-					className='controls-button'
-					onClick={() => setIsRunning(!isRunning)}>
+				<button className='controls-button' onClick={toggleTimer}>
 					{isRunning ? (
 						<img className='icon' src={PauseIcon} alt='' />
 					) : (
