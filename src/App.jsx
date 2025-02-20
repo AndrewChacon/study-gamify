@@ -5,7 +5,7 @@ import Shop from './components/Shop/component.shop';
 
 function App() {
 	const getStoredData = key => JSON.parse(localStorage.getItem(key)) || 0;
-	const [coins, setCoins] = useState(getStoredData('coins') || 0);
+	const [coins, setCoins] = useState(getStoredData('coins') || 50);
 	// const [coins, setCoins] = useState(100); // used for testing
 	const [completedSessions, setCompletedSessions] = useState(
 		getStoredData('completedSessions') || 0

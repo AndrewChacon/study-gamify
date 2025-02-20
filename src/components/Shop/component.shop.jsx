@@ -16,8 +16,8 @@ function Shop({ coins, setCoins }) {
 			item_name: 'Coins',
 			item_price: 30,
 			item_img: '🪙',
-			cost_name: 'Min Episode',
-			cost_price: 20,
+			cost_name: 'Episode',
+			cost_price: 1,
 			cost_img: '📺',
 		},
 		{
@@ -30,7 +30,7 @@ function Shop({ coins, setCoins }) {
 		},
 		{
 			item_name: 'Coins',
-			item_price: 75,
+			item_price: 70,
 			item_img: '🪙',
 			cost_name: 'Hour Gaming',
 			cost_price: 1,
