@@ -6,7 +6,7 @@ import alarmSound from '../../assets/sounds/alarm_sound.wav';
 import './style.timer.css';
 
 const CircleTimer = ({ setCoins, setCompletedSessions }) => {
-	const totalTime = 180;
+	const totalTime = 1500;
 	const [time, setTime] = useState(totalTime);
 	const [isRunning, setIsRunning] = useState(false);
 	const [startTime, setStartTime] = useState(null);
