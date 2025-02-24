@@ -41,6 +41,12 @@ function Shop({ coins, setCoins }) {
 		<section className='shop'>
 			<p className='shop-title'>Shop</p>
 			<div className='shop-items'>
+				<div className='shop-card'>
+					<div className='item-info'>
+						<h3 className='item-name'>Earn Coins</h3>
+						<p className='item-price'>1 ⏱️ | 20 🪙</p>
+					</div>
+				</div>
 				{items.map((item, index) => (
 					<ShopItem
 						key={index}
