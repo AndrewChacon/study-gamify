@@ -1,9 +1,16 @@
-# React + Vite
+# 🧠 Cyberpunk Pomodoro: Earn Your Rewards
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cyberpunk Pomodoro is a productivity timer built with React that helps you stay focused and motivated. Every time you complete a Pomodoro session, you earn in-app "coins" you can use to "purchase" rewards like watching TV or playing video games — all wrapped in a stylish Neo-Tokyo cyberpunk theme.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# study-gamify
+## ✨ Features
+
+- ⏳ **Focus Timer:** A classic Pomodoro session timer (customizable).
+- 💰 **Earn Coins:** Get rewarded with coins for every completed session.
+- 🛒 **Shop:** Spend your coins on real-life rewards to stay disciplined.
+- 🏙️ **Cyberpunk Theme:** Neon vibes to keep your grind futuristic and motivating.
+- 🧠 **Session Tracking:** Tracks your total completed sessions.
+- 💾 **Local Storage:** Coins and session data persist between visits.
+
+---
